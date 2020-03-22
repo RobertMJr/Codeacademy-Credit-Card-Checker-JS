@@ -11,6 +11,7 @@ const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3];
 const invalid3 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4];
 const invalid4 = [6, 0, 1, 1, 1, 2, 7, 9, 6, 1, 7, 7, 7, 9, 3, 5];
 const invalid5 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4];
+const invalid6 = [0, 1, 1, 1, 1, 1, 1, 1, 2];
 
 // Can be either valid or invalid
 const mystery1 = [3, 4, 4, 8, 0, 1, 9, 6, 8, 3, 0, 5, 4, 1, 4];
@@ -21,7 +22,7 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3];
 
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5];
-const batch2 = [invalid1, invalid2, invalid3, invalid4, invalid5];
+const batch2 = [invalid1, invalid2, invalid3, invalid4, invalid5, invalid6];
 
 
 // The purpose of validateCred() is to return true when an array contains digits of a valid credit card number and false when it is invalid. 
@@ -50,7 +51,7 @@ function validateCred(creditCard) {
 
 // Testing 
 console.log(validateCred(valid5));
-console.log(validateCred(invalid2));
+console.log(validateCred(invalid6));
 
 
 //The role of findInvalidCards() is to check through the nested array for which numbers are invalid, and return another nested array of invalid cards.
@@ -83,7 +84,7 @@ function idInvalidCardCompanies(invalidCCArr){
       else if (invalidCCArr[i][0] === 6 && issuingCompaniesArr.indexOf('Discover') === -1){
         issuingCompaniesArr.push('Discover');
       }
-      else if (validFirstDigits.includes(invalidCCArr[i[0]])){
+      else if (!validFirstDigits.includes(invalidCCArr[i][0])){
         console.log("Company not found");
       }
     }
@@ -92,6 +93,7 @@ function idInvalidCardCompanies(invalidCCArr){
   
   // Testing of idInvalidCardCompanies
   console.log(idInvalidCardCompanies(findInvalidCards(batch)));
+  console.log(idInvalidCardCompanies(findInvalidCards(batch2)));
 
 
   // strToArr() accepts a string and converts it into an array of numbers like the initially provided arrays
